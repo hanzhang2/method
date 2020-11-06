@@ -40,5 +40,17 @@ type user struct{
 ## 2.uuid生成
 
 ```go
+//纳秒级时间戳转换为md5去前10位
+func MD5() {
+    now:=time.Now()
+    t1:=now.UnixNano()
+    t2 := strconv.FormatInt(t1,10)
 
+    ctx := md5.New()
+    ctx.Write([]byte(t2))
+    t2=hex.EncodeToString(ctx.Sum(nil))
+
+    t2=t2[0:10]
+    fmt.Println(t2)
+}
 ```
